@@ -1,0 +1,2 @@
+# This file ensures the data/raw directory is tracked by git
+# Place your CMS Part D CSV/TSV files in this directory
