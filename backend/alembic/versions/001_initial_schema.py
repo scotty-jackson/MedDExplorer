@@ -45,7 +45,7 @@ def upgrade() -> None:
     op.create_index('ix_drugs_generic_name', 'drugs', ['generic_name'], unique=False)
     op.create_index('ix_drugs_brand_name', 'drugs', ['brand_name'], unique=False)
     op.create_index('ix_drugs_drug_class_id', 'drugs', ['drug_class_id'], unique=False)
-    op.create_index('ix_drugs_slug', 'drugs', ['slug'], unique=True)
+    op.create_index('ix_drugs_slug', 'drugs', ['slug'], unique=False)
 
     # Create drug_year_stats table
     op.create_table(
@@ -70,8 +70,9 @@ def upgrade() -> None:
     op.create_index('ix_drug_year_stats_id', 'drug_year_stats', ['id'], unique=False)
     op.create_index('ix_drug_year_stats_drug_id', 'drug_year_stats', ['drug_id'], unique=False)
     op.create_index('ix_drug_year_stats_year', 'drug_year_stats', ['year'], unique=False)
-    op.create_index('idx_year_stats_year_spending', 'drug_year_stats', ['year', sa.text('total_spending DESC')], unique=False)
-    op.create_index('idx_year_stats_year_growth', 'drug_year_stats', ['year', sa.text('yoy_spending_growth DESC')], unique=False)
+    # Simplified indexes for SQLite compatibility
+    op.create_index('idx_year_stats_year_spending', 'drug_year_stats', ['year', 'total_spending'], unique=False)
+    op.create_index('idx_year_stats_year_growth', 'drug_year_stats', ['year', 'yoy_spending_growth'], unique=False)
     op.create_index('idx_year_stats_drug_year', 'drug_year_stats', ['drug_id', 'year'], unique=False)
 
     # Enable pg_trgm extension for fuzzy text search (PostgreSQL only)

@@ -209,23 +209,19 @@ class MedicarePartDETL:
             # Use generic name as primary identifier, fallback to brand
             primary_name = generic_name if generic_name else brand_name
 
-            # Create slug
-            slug = self.create_slug(primary_name)
+            # Create slug based on both generic and brand name for uniqueness
+            slug_base = f"{primary_name}-{brand_name}" if brand_name else primary_name
+            slug = self.create_slug(slug_base)
 
-            # Check if drug exists (by generic name or brand name)
+            # Check if drug exists (by BOTH generic name AND brand name for uniqueness)
+            # Different brands of the same generic should be separate drug records
             drug = self.db.query(Drug).filter(
-                Drug.generic_name == generic_name
+                Drug.generic_name == generic_name,
+                Drug.brand_name == brand_name
             ).first()
 
-            if not drug and brand_name:
-                drug = self.db.query(Drug).filter(
-                    Drug.brand_name == brand_name
-                ).first()
-
             if drug:
-                # Update existing drug
-                if brand_name and not drug.brand_name:
-                    drug.brand_name = brand_name
+                # Drug already exists, just return it
                 self.stats['drugs_updated'] += 1
             else:
                 # Create new drug

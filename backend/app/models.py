@@ -40,8 +40,8 @@ class Drug(Base):
     # Classification
     drug_class_id = Column(Integer, ForeignKey("drug_classes.id"), nullable=True, index=True)
 
-    # SEO-friendly slug for URLs
-    slug = Column(String(500), unique=True, nullable=True, index=True)
+    # SEO-friendly slug for URLs (not unique since different drugs can have similar names)
+    slug = Column(String(500), unique=False, nullable=True, index=True)
 
     # Relationships
     drug_class = relationship("DrugClass", back_populates="drugs")
