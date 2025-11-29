@@ -126,7 +126,7 @@ export default function AboutPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Data Limitations</h2>
             <p className="text-gray-700 mb-4">
-              It's important to understand the limitations of this data:
+              It&apos;s important to understand the limitations of this data:
             </p>
             <ul className="list-disc pl-6 mb-4 text-gray-700">
               <li>
@@ -197,3 +197,4 @@ export default function AboutPage() {
     </Layout>
   );
 }
+
