@@ -43,7 +43,7 @@ export default async function YearPage({ params }: YearPageProps) {
   return (
     <Layout>
       {/* Header */}
-      <div className="bg-gradient-to-r from-primary-600 to-primary-800 rounded-lg shadow-xl p-8 md:p-12 mb-12 text-white">
+      <div className="bg-gradient-to-r from-primary-600 to-primary-800 dark:from-[#1f2a17] dark:to-[#0b1007] rounded-lg shadow-xl p-8 md:p-12 mb-12 text-white">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">{year} Medicare Part D Overview</h1>
         <p className="text-xl text-primary-100">
           Explore the top prescription drugs by spending, growth, and cost per beneficiary for{' '}
@@ -134,3 +134,4 @@ export default async function YearPage({ params }: YearPageProps) {
     </Layout>
   );
 }
+

@@ -257,3 +257,4 @@ export default async function DrugPage({ params }: DrugPageProps) {
     </Layout>
   );
 }
+

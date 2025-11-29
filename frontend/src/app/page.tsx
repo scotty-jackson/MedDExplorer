@@ -60,7 +60,7 @@ export default async function HomePage() {
   return (
     <Layout>
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-primary-600 to-primary-800 rounded-lg shadow-xl p-8 md:p-12 mb-12 text-white">
+      <div className="bg-gradient-to-r from-primary-600 to-primary-800 dark:from-[#1f2a17] dark:to-[#0b1007] rounded-lg shadow-xl p-8 md:p-12 mb-12 text-white">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
           Medicare Part D Drug Spending Explorer
         </h1>
@@ -182,3 +182,4 @@ export default async function HomePage() {
     </Layout>
   );
 }
+
